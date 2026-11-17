@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>First 24 Hours – Can you get by in English?</title>
+<style>
+:root{--bg:#fff8e5;--card:#fffdf6;--ink:#222;--navy:#14283f;--gold:#e8a900;--red:#b3261e;--ok:#1f6f50;--mut:#5a5a5a;--okbg:#e3f0e8;--badbg:#f7e4e4;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1a2a;--card:#162840;--ink:#f1ead8;--navy:#f3c94a;--mut:#b9b39f;--okbg:#17382c;--badbg:#44211f}}
+:root[data-theme="dark"]{--bg:#0e1a2a;--card:#162840;--ink:#f1ead8;--navy:#f3c94a;--mut:#b9b39f;--okbg:#17382c;--badbg:#44211f}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Arial,Helvetica,sans-serif}
+main{max-width:640px;margin:0 auto;padding:14px 14px 60px}
+.hero{background:#14283f;color:#fff;border-radius:14px;padding:22px 16px;text-align:center}
+.hero small{color:#f3c94a;letter-spacing:.12em;font-size:12px}
+.hero h1{font:bold 40px/1.05 Georgia,serif;margin:8px 0}
+.hero em{color:#f3c94a;font:italic 20px Georgia,serif}
+nav{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0;justify-content:center}
+nav button{border:1.5px solid var(--gold);background:var(--card);color:var(--ink);border-radius:20px;padding:6px 11px;font:600 13px Arial;cursor:pointer}
+nav button.on{background:var(--gold);color:#14283f}nav button.done::after{content:" ✓";color:var(--ok)}
+h2{font:bold 28px Georgia,serif;color:var(--navy);text-align:center;margin:6px 0 0}
+.sub{text-align:center;font:italic 17px Georgia,serif;color:var(--mut);margin:2px 0 14px}
+.card{background:var(--card);border:1.5px solid var(--gold);border-radius:12px;padding:12px 14px;margin:10px 0}
+.dk{background:#14283f;color:#fff;border-color:#14283f}.dk b{color:#f3c94a}
+.q{margin:12px 0 4px;font-weight:bold}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 8px}
+.o{border:1.5px solid var(--red);background:var(--card);color:var(--ink);border-radius:20px;padding:6px 12px;cursor:pointer;font:15px Arial;min-height:40px}
+.o i{background:var(--gold);color:#14283f;border-radius:50%;font-style:normal;font-weight:bold;padding:1px 6px;margin-right:6px}
+.o.ok{background:var(--okbg);border-color:var(--ok)}.o.no{background:var(--badbg);animation:s .3s}
+@keyframes s{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.code{display:flex;gap:5px;justify-content:center;align-items:center;margin:14px 0}
+.code b{background:#14283f;color:#fff;padding:12px 10px;border-radius:6px;font-size:13px;letter-spacing:.1em}
+.code span,.fin input{width:42px;height:46px;border:2px solid var(--red);border-radius:6px;background:var(--card);color:var(--ink);text-align:center;font:bold 22px Georgia,serif;display:flex;align-items:center;justify-content:center;text-transform:uppercase}
+.fin{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin:10px 0}.fin div{text-align:center;font-size:10px;color:var(--mut)}
+.fin input{width:100%;padding:0}
+.map{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;font-size:13px;text-align:center}
+.map div{border:1.5px solid var(--navy);border-radius:6px;padding:8px 2px;background:var(--card)}.map .st{grid-column:1/-1;background:#e7e7e7;color:#555;border:0;letter-spacing:.3em;font-weight:bold}
+.map i{background:var(--gold);color:#14283f;font-style:normal;font-weight:bold;border-radius:4px;padding:0 4px}.map .me{background:#fbe7a1;color:#14283f}
+.act{background:var(--red);color:#fff;border:0;border-radius:8px;padding:10px 16px;font:bold 15px Arial;cursor:pointer;margin:4px 4px 4px 0}
+.msg{font-weight:bold;margin:6px 0}.good{color:var(--ok)}.bad{color:var(--red)}
+select{font-size:16px;padding:4px;margin-right:6px}
+textarea{width:100%;min-height:70px;border:1.5px solid var(--gold);border-radius:8px;background:var(--card);color:var(--ink);font:15px Arial;padding:8px}
+.chips{font:italic 16px Georgia,serif;color:var(--navy)}
+</style></head><body><main>
+<div class="hero"><small>PROJECT 1 · BTS ÉLECTROTECHNIQUE · A1 → B2</small><h1>FIRST<br>24 HOURS</h1><em>Can you get by in English?</em>
+<p style="margin:12px 0 0">You are an electrical technician on a placement in Dublin. Your plane has just landed… but your suitcase is locked. Collect the codes. Open it. Get by.</p></div>
+<nav id="nav"></nav><div id="v"></div></main>
+<script>
+const O=s=>s.split('|').map(x=>[x[0],x.slice(2)]);
+const st={}; // solved counts per page
+const P=[
+{k:'Intro',t:'Boarding Pass',s:'How much English do you already use?',h:`<div class="card"><b>1 · Shout it!</b> Write 5 English words you already see or use every day.<textarea></textarea></div>
+<div class="card"><b>2 · Survival check</b> Tick the situations where you would feel nervous in English.<br>${['at the airport','asking the way','ordering food','in a hotel','at the pharmacy','at work, with a supervisor'].map(x=>`<label style="display:block;padding:3px 0"><input type="checkbox"> ${x}</label>`).join('')}</div>
+<div class="card dk"><b>3 · Hot take</b><br><i>“You can survive abroad with only ‘yes’, ‘no’ and ‘thank you’.”</i><p>Rate 1 (disagree) to 5 (agree), then defend it in one sentence.</p></div>
+<div class="card"><b>Your path:</b> ★ A1: first step of each doc · ★★ A2–B1: steps 1–2 · ★★★ B2: everything + bonus</div>`},
+{k:'1',t:'Follow the Signs',s:'Your plane has landed. Where do you go?',w:'GATE',h:`<div class="card"><b>Warm-up.</b> Arrivals = arrivées · Departures = départs · Baggage reclaim = retrait des bagages · Passport control = contrôle des passeports · Exit = sortie · Gate = porte d’embarquement · Check-in = enregistrement</div>`,
+q:[['Where do you show your passport?','G:Passport control|B:Gate|R:Exit'],['Where do you collect your suitcase?','A:Baggage reclaim|P:Departures|K:Check-in'],['Which sign shows the way out of the building?','T:Exit|M:Gate|L:Check-in'],['You fly home tomorrow. Where do you go?','E:Departures|N:Arrivals|S:Baggage reclaim']],
+f:`<div class="card"><b>★★★ Bonus.</b> A friend is lost at the airport. Explain what to do: First… Then… Finally…<textarea></textarea></div>`},
+{k:'2',t:'Nice to Meet You',s:'Your host is waiting at Arrivals',order:1,h:`<div class="card dk"><b>SURVIVAL KIT</b><br>Sorry, could you repeat that? · Could you speak more slowly, please? · What does … mean? · How do you spell that? · I don’t understand.</div>
+<div class="card"><b>Mission · Meet your partner</b> 3 rounds of 1 minute. Ask, listen, note keywords:<br><i class="chips">What’s your name? · Where are you from? · What do you study? · What do you like doing?</i><textarea placeholder="My partner: name, from, studies, likes…"></textarea></div>`},
+{k:'3',t:'Numbers in Real Life',s:'Prices, times, room numbers',w:'TWELVE',h:`<div class="card"><b>Warm-up.</b> 13 / 30 · 14 / 40 · 15 / 50 · 16 / 60. Say one, your partner points.<br>quarter past = :15 · half past = :30 · quarter to = :45</div>`,
+q:[['“Fifteen euros fifty”','T:€15.50|S:€50.15|R:€5.50'],['“A quarter past nine”','W:9:15|B:9:45|D:8:45'],['“Half past two”','E:2:30|A:1:30|K:2:15'],['“Twenty to eight”','L:7:40|M:8:20|P:7:20'],['“It’s thirteen euros.”','V:€13|N:€30|F:€3'],['“Your room is four-oh-six.”','E:406|Y:460|H:4.6']],
+f:`<div class="card"><b>★★★ Bonus.</b> Write your phone number in words.<textarea></textarea></div>`},
+{k:'4',t:'Where Is It?',s:'Ask the way, understand the answer',w:'BLOCK',map:1,h:'',
+q:[['“It’s next to the police station. You can sleep there.”','C:Bank|O:Café|E:Post office|L:Pharmacy|S:Station|K:Supermarket|B:Hotel|T:Police station'],['“It’s opposite the police station. You can buy medicine there.”','C:Bank|O:Café|E:Post office|L:Pharmacy|S:Station|K:Supermarket|B:Hotel|T:Police station'],['“It’s between the bank and the post office. You can have a coffee there.”','C:Bank|O:Café|E:Post office|L:Pharmacy|S:Station|K:Supermarket|B:Hotel|T:Police station'],['“It’s opposite the station and next to the café. You can get money there.”','C:Bank|O:Café|E:Post office|L:Pharmacy|S:Station|K:Supermarket|B:Hotel|T:Police station'],['“It’s next to the station and opposite the café. You can buy food there.”','C:Bank|O:Café|E:Post office|L:Pharmacy|S:Station|K:Supermarket|B:Hotel|T:Police station']],
+f:`<div class="card"><b>Pair work.</b> Ask the way from the station: <i class="chips">Excuse me, how do I get to the…? → Go straight on. Turn left / right. It’s on your left / right.</i></div>`},
+{k:'5',t:'Café Time',s:'Order, pay, check your change',w:'CHANGE',h:`<div class="card"><b>THE GREEN PLUG CAFÉ · Dublin</b><br>Water €1.50 · Tea €2.20 · Coffee €2.80 · Orange juice €3.00<br>Sandwich €5.50 · Soup €4.90 · Burger and chips €9.50 · Cake (contains nuts) €3.40</div>`,
+q:[['What is the cheapest drink?','C:Water|B:Tea|P:Coffee'],['You order a coffee and a cake. How much is it?','H:€6.20|M:€5.20|L:€6.40'],['“Eat in or take away?” You want to leave with your sandwich. You say:','A:Take away, please.|F:Eat in, please.|U:Go away, please.'],['Soup + burger and chips + 2 teas. Total?','N:€18.80|T:€16.80|S:€19.80'],['You pay €20 for €18.80. Your change?','G:€1.20|D:€2.20|W:€1.80'],['“I’m allergic to nuts.” means:','E:Je suis allergique aux fruits à coque|Y:J’adore les noix|O:Je n’ai pas faim']]},
+{k:'6',t:'Help, Please!',s:'Your written message (intermediate task)',h:`<div class="card dk"><b>YOU HAVE A PROBLEM</b><br>Write a short message to your host or reception. Say who you are, explain the problem, ask for help politely.<br>★ 20–30 words · ★★ 40–60 · ★★★ 70–90<br>Problems: no hot water · the light doesn’t work · the Wi-Fi isn’t working · I lost my key · the socket is broken · I’m late for work</div>
+<div class="card"><i class="chips">Hello… · I’m… in room… · There is no… · The … doesn’t work · Could you help me, please? · Could you send someone…? · Thank you very much</i><textarea id="msg" oninput="wc()" style="min-height:140px"></textarea><div id="wc" class="msg">0 words</div></div>`},
+{k:'7',t:'Safety First',s:'Day one at Dublin Electrics',w:'MAINS',h:`<div class="card"><b>Toolbox.</b> socket = prise · plug = fiche · switch = interrupteur · fuse = fusible · gloves = gants · safety shoes = chaussures de sécurité</div>`,
+q:[['Sign: DANGER — HIGH VOLTAGE','M:Risk of electric shock|G:Wet floor|R:Fire exit'],['Sign: WEAR SAFETY GLASSES AND GLOVES','A:You must wear protection|B:Leave your gloves at home|C:Clean the glasses'],['Sign: AUTHORISED PERSONNEL ONLY','I:Only people with permission|U:Everyone can enter|O:Visitors welcome'],['Sign: ISOLATE BEFORE WORKING','N:Cut the power first|D:Work as fast as you can|E:Plug in the machine'],['Sign: EMERGENCY STOP — press the red button','S:The machine stops|T:The machine starts|L:The door opens']],
+f:`<div class="card"><b>Introduce yourself.</b> “Hello, I’m ___. I’m a ___ student in ___. I’m here for ___ weeks.”<textarea></textarea></div>`},
+{k:'8',t:'Can You Hear Me?',s:'Real messages, real speed',w:'HELP',audio:1,h:'',
+q:[['Message 1 — When can you have breakfast?','H:7:00–10:00|N:8:00–11:00|B:7:00–11:00'],['Message 2 — How much is a day ticket?','E:€5|T:€2.50|R:€15'],['Message 3 — What time is the meeting?','L:8:30|S:8:15|M:9:30'],['Message 3 — What must you bring?','P:Safety shoes and ID|K:Laptop and lunch|D:A map and an umbrella']]},
+{k:'9',t:'Could You Help Me?',s:'Grammar lab · polite requests',w:'COULD',h:`<div class="card"><b>Ask for something:</b> Can I have… ? · Could I have… ? · I’d like… (= I would like)<br><b>Ask for help:</b> Could you help me, please? · Is there a pharmacy near here? · Are there any buses?<br><b>Tip:</b> always add please and thank you.</div>`,
+q:[['____ I have a coffee, please?','C:Can|S:Do|M:Am'],['I ____ like a room for two nights.','O:’d|N:’m|H:do'],['____ you help me, please?','U:Could|R:Are|E:Is'],['Excuse me, ____ a pharmacy near here?','L:is there|K:have there|T:there are'],['Sorry, I don’t ____. Could you repeat?','D:understand|W:understanding|A:understands']],
+f:`<div class="card dk"><b>REQUEST CHAIN</b> in groups of 4: make a polite request. The next student adds a new one. A wrong form or a missing “please” and you’re out!</div>`},
+{k:'Final',t:'Open It!',s:'Break the lock',fin:1}
+];
+const SCR=['Good morning, and welcome to the Liffey Hotel. Breakfast is served from seven to ten o’clock in the restaurant on the ground floor. The Wi-Fi password is on your key card. Enjoy your stay!','Hello. A single ticket is two euros fifty. A day ticket is five euros. You can pay by card or with coins. Next stop: Connolly Station.','Hello, this is Sean from Dublin Electrics. Welcome to the team! Please meet me at the main entrance tomorrow at half past eight. Bring your safety shoes and your ID. See you tomorrow! Bye.'];
+const DLG=['Long, but fine. I’m a bit tired.','Thank you so much!','Hello! Are you Alex from France?','Nice to meet you too! Welcome to Dublin. How was your flight?','No problem. Let me take your suitcase. The car is outside.','Yes, that’s me. Nice to meet you!'],ORD=[3,5,0,1,4,2]; // correct position (1-6) of each line: C F D A E B
+const POS=[4,6,1,3,5,2];
+let cur=0;
+const $=s=>document.querySelector(s);
+function nav(){$('#nav').innerHTML=P.map((p,i)=>`<button class="${i==cur?'on':''} ${st[i]===true?'done':''}" onclick="go(${i})">${p.k=='Intro'||p.k=='Final'?p.k:'Doc '+p.k}</button>`).join('')}
+function go(i){cur=i;nav();render();scrollTo(0,0)}
+function wc(){const n=($('#msg').value.trim().match(/\S+/g)||[]).length;$('#wc').textContent=n+' words'}
+function say(i){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(SCR[i]);u.lang='en-GB';u.rate=.9;speechSynthesis.speak(u)}
+function render(){
+ const p=P[cur],v=$('#v');
+ let h=`<h2>${p.t}</h2><div class="sub">${p.s}</div>`;
+ if(p.fin){const L=[['TWELVE',2,3],['GATE',4,1],['BLOCK',2,4],['CHANGE',1,5],['COULD',2,9],['MAINS',1,7],['HELP',2,8]];
+  h+=`<div class="card">Solve the docs to unlock each code word. Then take the letter shown under each box and type the final code.</div><div class="card">${L.map(l=>`<div>Doc ${l[2]}: ${st[P.findIndex(x=>x.k==l[2]+'')]===true?'<b class="good">'+l[0]+' ✓</b>':'<span class="bad">locked</span>'}</div>`).join('')}</div>
+  <div class="fin">${L.map((l,i)=>`<div><input maxlength="1" id="f${i}" aria-label="letter ${l[1]} of ${l[0]}">${l[0]} #${l[1]}</div>`).join('')}</div>
+  <button class="act" onclick="chk()">Open the suitcase</button><div id="r" class="msg"></div>`;
+  v.innerHTML=h;return}
+ h+=p.h||'';
+ if(p.map)h+=`<div class="card"><div class="map"><div><i>C</i> Bank</div><div><i>O</i> Café</div><div><i>E</i> Post office</div><div><i>L</i> Pharmacy</div><div class="st">MAIN STREET</div><div class="me"><i>S</i> Station (you are here)</div><div><i>K</i> Supermarket</div><div><i>B</i> Hotel</div><div><i>T</i> Police station</div></div><p style="margin:8px 0 0"><b>opposite</b> = en face de · <b>next to</b> = à côté de · <b>between</b> = entre</p></div>`;
+ if(p.audio)h+=`<div class="card"><b>Listen twice.</b> Listen for numbers and keywords.<br>${[1,2,3].map(i=>`<button class="act" onclick="say(${i-1})">▶ Message ${i}</button>`).join('')}</div>`;
+ if(p.order){h+=`<div class="card"><b>1 · Put the dialogue in order (1–6)</b>${DLG.map((d,i)=>`<div style="margin:8px 0"><select id="d${i}"><option value="">–</option>${[1,2,3,4,5,6].map(n=>`<option>${n}</option>`).join('')}</select>${d}</div>`).join('')}<button class="act" onclick="cd()">Check</button><span id="dm" class="msg"></span></div>`}
+ if(p.q){h+=`<div class="card"><b>Choose the right answer.</b> Each correct answer reveals one gold letter of the code.`;
+  p.q.forEach((q,i)=>{h+=`<div class="q">${i+1}. ${q[0]}</div><div class="opts" id="q${i}">${O(q[1]).map(([l,t])=>`<button class="o" onclick="pick(${i},'${l}',this)"><i>${l}</i>${t}</button>`).join('')}</div>`});
+  h+=`</div><div class="code"><b>CODE</b>${[...p.w].map((c,i)=>`<span id="c${i}"></span>`).join('')}</div><div id="cm" class="msg"></div>`}
+ h+=p.f||'';
+ v.innerHTML=h;
+ if(p.q&&st[cur]===true){p.q.forEach((q,i)=>{$('#c'+i).textContent=p.w[i];$('#q'+i).querySelectorAll('.o').forEach(b=>{if(b.firstChild.textContent==p.w[i])b.classList.add('ok')})});$('#cm').innerHTML='<span class="good">Code unlocked: '+p.w+'</span>'}
+}
+function pick(i,l,b){const p=P[cur];if(st[cur]===true)return;
+ if(l===p.w[i]){b.classList.add('ok');$('#c'+i).textContent=l;(st['n'+cur]=st['n'+cur]||{})[i]=1;
+  if(Object.keys(st['n'+cur]).length==p.q.length){st[cur]=true;$('#cm').innerHTML='<span class="good">Code unlocked: '+p.w+'</span>';nav()}}
+ else{b.classList.add('no');setTimeout(()=>b.classList.remove('no'),500)}}
+function cd(){const ok=DLG.every((d,i)=>$('#d'+i).value==POS[i]);$('#dm').innerHTML=ok?'<span class="good"> Perfect! ✓</span>':'<span class="bad"> Not quite. Try again.</span>';if(ok){st[cur]=true;nav()}}
+function chk(){const L=[['TWELVE',2],['GATE',4],['BLOCK',2],['CHANGE',1],['COULD',2],['MAINS',1],['HELP',2]];
+ const w=L.map((l,i)=>($('#f'+i).value||'').toUpperCase()).join(''),r=$('#r');
+ if(w==='WELCOME'){r.innerHTML='<span class="good">🔓 WELCOME! The suitcase opens.</span><div class="card dk"><b>YOUR MISSION · DAY ONE</b><p>Inside, a card from Aoife: “Welcome! Show me you can get by.” In pairs, record a 2-minute role-play: 1 · the hotel (check in, breakfast, Wi-Fi) 2 · the café (order, pay) 3 · the street (ask the way) 4 · the workshop (introduce yourself, one safety rule). Draw a surprise card before scene 3: My card doesn’t work · The bus is late · I’m allergic to… · I lost my key · The tool is broken.</p><p class="chips" style="color:#f3c94a">Hello, I’m… · I’d like… · Could you…, please? · How much is it? · Excuse me, where is…? · Sorry, could you repeat? · Thank you very much</p></div>'}
+ else r.innerHTML='<span class="bad">Not yet. Check each letter: letter n° # of each code word.</span>'}
+nav();render();
+</script></body></html>
